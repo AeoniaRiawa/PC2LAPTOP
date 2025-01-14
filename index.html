@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expand Card On Hover</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #222;
+            font-family: sans-serif;
+            flex-wrap: wrap; /* Allow wrapping of cards */
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px; /* Space between cards */
+        }
+
+        .card {
+            width: 150px; /* Adjusted width for portrait */
+            height: 250px; /* Adjusted height for portrait */
+            background-color: #fff;
+            overflow: hidden;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            width: 300px; /* Adjusted width on hover */
+            height: 500px; /* Adjusted height on hover */
+        }
+
+        .card__content {
+            position: absolute;
+             bottom: 0; /* Position content at the bottom */
+             left: 0;
+             right: 0; /* Ensure it stretches across the card */
+             background-color: rgba(0, 0, 0, 0.334); /* Gray transparent background */
+             text-align: center;
+             color: #fff; /* Change text color to white for better contrast */
+             padding: 10px; /* Add some padding */  
+             opacity: 0; /* Initially hidden */
+             transition: opacity 0.3s ease; /* Smooth transition for opacity */
+             z-index: 1; /* Ensure content is above the video */
+        }
+
+        .card__title {
+            font-size: 1.2rem; /* Adjusted font size */
+            margin-bottom: 10px;
+        }
+
+        .card__thumbnail {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block; /* Ensure the image is displayed */
+        }
+
+        .card__video {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card:hover .card__video {
+            display: block;
+        }
+
+        .card:hover .card__thumbnail {
+            display: none; /* Hide thumbnail on hover */
+        }
+
+        .card:hover .card__content {
+            opacity: 1; /* Show content on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <img class="card__thumbnail" src="uweh.png" alt="Thumbnail for Natsume Iroha">
+            <div class="card__content">
+                <h2 class="card__title">Natsume Iroha</h2>
+                <p>This is a short description of the card.</p>
+            </div>
+            <video class="card__video" src="Blue Archive - Hoshino Live2D.mp4" autoplay muted loop></video>
+        </div>
+
+        <div class="card">
+            <img class="card__thumbnail" src="uweh.png" alt="Thumbnail for Card 2">
+            <div class="card__content">
+                <h2 class="card__title">Card 2</h2>
+                <p>This is a short description of the card.</p>
+            </div>
+            <video class="card__video" src="Blue Archive - Hoshino Live2D.mp4" autoplay muted loop></video>
+        </div>
+    
+        <div class="card">
+            <img class="card__thumbnail" src="uweh.png" alt="Thumbnail for Card 3">
+            <div class="card__content">
+                <h2 class="card__title">Card 3</h2>
+                <p>This is a short description of the card.</p>
+            </div>
+            <video class="card__video" src="Blue Archive - Hoshino Live2D.mp4" autoplay muted loop></video>
+        </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script>
+    <script>
+        const cards = document.querySelectorAll('.card');
+
+        cards.forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, { scale: 1.1, duration: 0.3 });
+            });
+
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, { scale: 1, duration: 0.3 });
+            });
+        });
+    </script>
+</body>
+</html>
